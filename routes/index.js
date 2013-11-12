@@ -16,3 +16,7 @@ exports.post = function(req, res){
     });
   });
 };
+
+exports.canvas = function(req, res){
+  res.render('canvas', {title : 'Canvas'});
+}

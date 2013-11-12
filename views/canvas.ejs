@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/fabric.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <canvas id=c width="800" height="450" style="border:1px solid #000000;"></canvas>
+    <script>
+      var canvas = new fabric.Canvas('c');
+
+      canvas.on('mouse:down', function(options) {
+        if(!canvas.getActiveObject())
+        {
+          var itext = new fabric.IText("", {
+                          isEditing : true,
+                          left: options.e.clientX - canvas._offset.left,
+                          top: options.e.clientY - canvas._offset.top,
+                          });
+          canvas.add(itext);
+          canvas.setActiveObject(itext);
+          itext.initDelayedCursor();
+          canvas.renderAll();
+        }
+      });
+      //setInterval(function(){alert(JSON.stringify(canvas.toJSON()))},10000);
+</script>
+  </body>
+</html>
